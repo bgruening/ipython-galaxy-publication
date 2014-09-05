@@ -1,0 +1,5 @@
+*.aux
+document.pdf
+*.log
+*.swp
+*.gz
