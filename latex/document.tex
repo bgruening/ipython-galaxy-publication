@@ -65,7 +65,7 @@ p.plotfile(filename,delimiter='\t',cols=(0,12))
 p.savefig("col12.svg")
 put("col12.svg")
 \end{lstlisting}
-In the code example the data set which has the ID 57 in the Galaxy history is loaded into the IPython notebook inside the plotfile method of an matplolib.pyplot object. Of this file the 13the column is plotted against the first column and the resulting plot is stored as a SVG file. The put command copies the image into the Galaxy history, so it is now persistently stored and can be downloaded or shared like any other Galaxy object. 
+In the code example the data set which has the ID 57 in the Galaxy history is loaded into the IPython notebook inside the plotfile method of an matplolib.pyplot object. Of this file the 13the column is plotted against the first column and the resulting plot is stored as a SVG file. The put command copies the image into the Galaxy history, so it is now persistently stored and can be downloaded or shared like any other Galaxy object.
 
 
 
@@ -75,23 +75,23 @@ In the code example the data set which has the ID 57 in the Galaxy history is lo
 %config files provides history dataset association And general variables calls mako
 %
 %mako file mainly prepares a docker container with a configuration file and a notebook access url (with a specific docker port)
-%invokes the docker container with 
+%invokes the docker container with
 %
 %API
 %hist.id
-%paswd 
+%paswd
 %conf.yaml
 %
-%mako template 
+%mako template
 %invoke docker
 %command
 %/import/configfile in docker
-%runs ipython -> HTML object 
+%runs ipython -> HTML object
 %docker monitors tcp connections as cron job -> docker cleans up and kills itself
 %
 %IPython
 %%predefined functions: get(datasetNr.) copy dataset into docker ocntainer .. example?
-%%knows history_id 
+%%knows history_id
 %put (filename,type)
 %
 %
@@ -123,12 +123,12 @@ In the code example the data set which has the ID 57 in the Galaxy history is lo
 \section{Conclusion}
 The IPython-Docker container adds versatility to Galaxy by embedding a Python shell in a secure and easy to install manner. This plugin represents a major shortcut for anybody with some programming experience who can not wait for a specific tool to be implemented in Galaxy or who needs more control to manipulate data. The possibilities with this plugin are immense and the small example is just a glimpse of what could be done with a fully implemented scipy stack. The major security concern of giving a user access to such a powerful tool as IPython, running on a Galaxy server, with the flexibility to install packages as needed, has been resolved by running the IPython web service inside a Docker container. This sandboxes the user, isolating them from the rest of the Galaxy server such that they can not break the system or read sensitive data from other users. The user is additionally restricted by limits which administrators have placed on docker containers, hopefully preventing single users from launching denial of service attacks through over-use of memory/CPU cycles. % TODO: Implement https://github.com/bgruening/galaxy-ipython/issues/24
 
-The user can interact with the Galaxy instance with the two predefined functions \textit{put} and \textit{get} and these two functions essentially define the exchange between the container and the Galaxy instance. With the possibility to store the IPython notebook in the history, consistent and reproducible data analysis is possible and encouraged. By publishing or sharing a history containing IPython notebooks, notebooks can be easily shared with other users. That way users with no programming experience can benefit from notebooks developed by users with programming experience. 
+The user can interact with the Galaxy instance with the two predefined functions \textit{put} and \textit{get} and these two functions essentially define the exchange between the container and the Galaxy instance. With the possibility to store the IPython notebook in the history, consistent and reproducible data analysis is possible and encouraged. By publishing or sharing a history containing IPython notebooks, notebooks can be easily shared with other users. That way users with no programming experience can benefit from notebooks developed by users with programming experience.
 
 
 
 \section*{Acknowledgement}
-We would like to thank the Galaxy team and the Galaxy community for being so inspiring and helpful. 
+We would like to thank the Galaxy team and the Galaxy community for being so inspiring and helpful.
 
 
 \paragraph{Funding\textcolon} The project was supported by the German Research Foundation (DFG-grant SFB 992/1).
