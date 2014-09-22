@@ -104,7 +104,7 @@ In the code example the data set which has the ID 57 in the Galaxy history is lo
 
 \begin{figure}[!tpb]
 \centerline{\includegraphics{diagram.pdf}}
-\caption{Diagram of the program flow when the IPython Visualization is used. The IPython visualization plugin is divided into two parts, the first part generates a key file and generates an IPython notebook, then it runs a container from a specific Docker image. In this Docker container, IPython and all its dependencies are installed as well as some Python libraries. The key file and the IPython notebook are copied to the container and the IPython Webservice is started. The second part of the visualization template now generates a connection to the web service provided by the Docker container. For clean keeping the container also checks whether or not a connection to it exists. If the container is no longer used it terminates itself.}
+\caption{Diagram of the program flow when the IPython Visualization is used. The IPython visualization plugin is divided into two parts; the first part generates initialization information and an IPython notebook, in the second part it launches a container from a specific Docker image. In this Docker container, IPython and all its dependencies are installed as well as some Python libraries. The configuration file and the IPython notebook are copied to the container and the IPython Webservice is started. The second part of the visualization template now generates a connection to the web service provided by the Docker container. For self cleaning, the container also checks whether or not a connection to it exists, allowing the container to terminate itself if it no longer in use.}
 \label{fig:diagram}
 \end{figure}
 
