@@ -51,8 +51,8 @@ During Docker container startup, a cron job is launched which allows for determi
 Upon starting the IPython visualization a check is performed on the data set from which the IPython visualization was called; compatible IPython notebooks will be reused, while other datasets utilize a notebook generated from a template. It should be stressed that this functionality ensures the reproducibility of data analysis performed with this plugin, and is therefore an essential feature.
 
 
-\section{Use Case}
-
+\section{Use Cases}
+\subsection{Plotting Data}
 Prior to the existence of the Galaxy IPython plugin, if a user wanted to transform and plot a specific column of a dataset and get the result in a file of the Scalable Vector Graphics (SVG) format so they can do further image manipulation, the user would have to download the data set which could take a long time depending on the file size and their internet connection, complete their plotting of the dataset and record their commands to make it reproducible. The task of plotting seems trivial at first because there are several useful tools in the toolshed for data visualization, however these fail to provide a user and research friendly workflow. With the use of the IPython visualization tool the user could copy their data set inside the docker container with the \texttt{get()} command. They can then manipulate the data remotely with a fully functional Python shell, generate their plots, and finally store datasets and their notebook. This workflow reduces the input time and effort required on the end user significantly, the process of generating the plot and exporting it as an SVG file becomes a matter of a few lines of python and a couple mouse clicks.
 
 \lstset{language=python,
@@ -67,7 +67,9 @@ put("col12.svg")
 \end{lstlisting}
 In the code example the data set which has the ID 57 in the Galaxy history is loaded into the IPython notebook inside the plotfile method of an matplolib.pyplot object. Of this file the 13the column is plotted against the first column and the resulting plot is stored as a SVG file. The put command copies the image into the Galaxy history, so it is now persistently stored and can be downloaded or shared like any other Galaxy object.
 
-
+%TODO: Expand this section a LOT.
+\subsection{API Interaction}
+The implementation of the Galaxy IPython visualization plugin is not designed to restrict the user, instead the intention is to free them to do their analysis with best practices. To this end, the IPython Notebook provides direct access to a pre-configured BioBlend object, allowing the user to make API calls as necessary. Having access to the API can be invaluable for running batch analyses, launching multiple workflows over numerous datasets, etc. In order to respect security, information necessary to accomplish this is stored outside of notebooks and available inside notebooks as static variables; the user is able to use \texttt{API_KEY} without displaying their API key, invaluable if the user intends to publishs their notebook as part of their research effort.
 
 %
 %visualization plugin how implemented used because ease of integration
