@@ -227,8 +227,9 @@ terminate itself if it no longer in use.}
 \section{Conclusion}
 The IPython-Docker container adds versatility to Galaxy by embedding a Python shell in a secure and easy-to-install manner.
 This plugin is a major shortcut for a user with some programming experience who cannot wait for a specific tool to
-be implemented in Galaxy or who needs more control to manipulate data. The possibilities with this plugin are immense and the
-small example is just a glimpse of what could be done with a fully implemented scipy stack. The major security concern
+be implemented in Galaxy or who needs more control to manipulate data. The potential applications of this plugin are extensive.
+The example explained above is just a glimpse of what could be done with the full scipy stack. The major security concern
+% RFY: btw, "scipy stack" not defined, reference?
 of giving a user access to such a powerful tool as IPython, running on a Galaxy server, with the flexibility to install
 packages as needed, has been resolved by running the IPython web service inside a Docker container. This sandboxes the user,
 isolating them from the rest of the Galaxy server such that they can not break the system or read sensitive data from other
