@@ -149,10 +149,9 @@ filename = get(57)
 p.plotfile(filename,delimiter='\t',cols=(0,12))
 p.savefig("col12.svg")
 put("col12.svg")
+\label{code:import}
 \end{lstlisting}
-In the code example the dataset which has the ID 57 in the Galaxy history is loaded into the IPython notebook inside the
-% RFY: Figure 2?
-% ESR: yeah, need to reference.
+In the code listing~\ref{code:import}, the dataset which has the ID 57 in the Galaxy history is loaded into the IPython notebook inside the
 plotfile method of an matplolib.pyplot object. Of this file the 13th column is plotted against the first column and the
 resulting plot is stored as a SVG file. The put command copies the image into the Galaxy history, so it is now persistently
 stored and can be downloaded or shared like any other Galaxy object.
