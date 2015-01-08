@@ -73,9 +73,7 @@ association (HDA) for the template file in order to get access to the data. \\
 The template file of the plugin is written in Mako, a Python template engine which can be used in conjunction with HTML
 % RFY: Mako needs a reference
 and Javascript code to generate web pages. In the first part of this plugin's template file, a configuration is generated with a password, 
-an API-key for the Docker container, and a unique port for communication. These pieces of information are stored so that Galaxy
-% RFY: Define API first time used
-% ESR: I don't think this is necessary for our target audience? But maybe?
+an Application Programming Interface (API) key for the Docker container, and a unique port for communication. These pieces of information are stored so that Galaxy
 and the Dockerized IPython web service can communicate securely, while isolated from the rest of the server.
 
 % RFY: I note taht there is an indent here but not at the start of other paragraphs. I recommend indenting every new paragraph
