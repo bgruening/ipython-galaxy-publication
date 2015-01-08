@@ -72,14 +72,11 @@ and will be described in more detail later. The configuration is also responsibl
 association (HDA) for the template file in order to get access to the data. \\
 The template file of the plugin is written in Mako, a Python template engine which can be used in conjunction with HTML
 % RFY: Mako needs a reference
-and Javascript code to generate web pages. In the first part of this plugin's template file, a configuration is generated with a password
-and an API-key for the Docker container. These pieces of information are stored so that Galaxy
+and Javascript code to generate web pages. In the first part of this plugin's template file, a configuration is generated with a password, 
+an API-key for the Docker container, and a unique port for communication. These pieces of information are stored so that Galaxy
 % RFY: Define API first time used
 % ESR: I don't think this is necessary for our target audience? But maybe?
-and the IPython web service, which will be started in the Docker container, can communicate while isolated from the rest of the server. 
-% ESR: Can we use "Dockerized" here? If so, we can get rid of "which will...Docker container".
-%This has to be rewritten, but I don't know how it works exactly.. IE can request port from Galaxy? 
-% Most importantly a unique port is attributed to each Docker container so that different users using this plugin on the same server do not interfere with each other. \\
+and the Dockerized IPython web service can communicate securely, while isolated from the rest of the server.
 
 % RFY: I note taht there is an indent here but not at the start of other paragraphs. I recommend indenting every new paragraph
 % ESR: Yes boss, but that's LaTeX and a configuration option, and not so important.
