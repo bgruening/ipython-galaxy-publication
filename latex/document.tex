@@ -92,8 +92,8 @@ and provides a basic IPython server, with its dependencies and some extra Python
 % RFY: reference numpy/scipy/matplotlib, all software packages used
 % RFY: since these are proper names, they should be capitalized and/or referenced
 By providing images with a full suite of Python scientific analysis tools and libraries, users are able 
-to immediatly perform their intricate analysis and calculations. Additional Python packages can be installed with Python
-package managers, e.g.\ pip. The same is true for R packages or anything that can be installed in a non-priviledged user account. 
+to immediately perform their intricate analysis and calculations. Additional Python packages can be installed with Python
+package managers, e.g.\ pip. The same is true for R packages or anything that can be installed in a non-privileged user account. 
 % RFY: Same as above. Pip and R need to be referenced
 The IPython notebook is then embedded inside the usual Galaxy interface and can be used to interactively program in Python.
 Having abstracted the chosen container into a site-specific configuration option, Galaxy instances with different use cases
@@ -164,7 +164,7 @@ them to do the desired analyses with best practices. To this end, the IPython No
 BioBlend object, allowing the user to make API calls as necessary. Having access to the API can be invaluable for running
 batch analyses, launching multiple workflows over numerous datasets, etc. In order to respect security, information necessary
 to accomplish this is stored outside of notebooks and available inside notebooks as static variables. The user is able to use
-\texttt{API\_KEY} without displaying their API key, which is invaluable if the user intends to publishs their notebook as
+\texttt{API\_KEY} without displaying their API key, which is invaluable if the user intends to publish their notebook as
 part of their research effort.
 
 %
@@ -205,7 +205,7 @@ part of their research effort.
 \caption{Diagram of the program flow when the IPython IE is used. The IPython IE plugin is divided into two parts;
 the first part generates initialization information and an IPython notebook, in the second part it launches a container
 from a specific Docker image. In this Docker container, IPython and all its dependencies are installed as well as some Python
-libraries. The configuration file and the IPython notebook are copied to the container and the IPython Webservice is started.
+libraries. The configuration file and the IPython notebook are copied to the container and the IPython service is started.
 The second part of the IE template now generates a connection to the web service provided by the Docker container.
 For self cleaning, the container also checks whether or not a connection to it exists, allowing the container to
 terminate itself if it no longer in use.}
@@ -228,12 +228,12 @@ terminate itself if it no longer in use.}
 The IPython-Docker container adds versatility to Galaxy by embedding a Python shell in a secure and easy-to-install manner.
 This plugin is a major shortcut for a user with some programming experience who cannot wait for a specific tool to
 be implemented in Galaxy or who needs more control to manipulate data. The potential applications of this plugin are extensive.
-The example explained above is just a glimpse of what could be done with the full scipy stack. The major security concern
+The example explained above is just a glimpse of what could be done with the full SciPy stack. The major security concern
 % RFY: btw, "scipy stack" not defined, reference?
 of giving a user access to such a powerful tool as IPython, running on a Galaxy server, with the flexibility to install
 packages as needed, has been resolved by running the IPython web service inside a Docker container. This 
 % RFY: "sanboxes", is this jargon? If not, reference. I think just saying "isolates"
-isolating IE users from the rest of the Galaxy server, protecting the system and keeping sensitive data secure.
+isolates IE users from the rest of the Galaxy server, protecting the system and keeping sensitive data secure.
 The user is additionally restricted by limits which administrators have placed on Docker containers,
 hopefully preventing single users from launching denial of service attacks through over-use of memory/CPU cycles.
 %TODO: Implement https://github.com/bgruening/galaxy-ipython/issues/24
@@ -248,7 +248,7 @@ This way users with no programming experience can benefit from notebooks develop
 
 \section*{Acknowledgement}
 We would like to thank the Galaxy team and the Galaxy community for being so inspiring and helpful. 
-Additionally we would like to thank Dr. Ryland Young, of the Center for Phage Technology at Texas A\&M University, for editing help
+Additionally we would like to thank Dr.\~Ryland Young, of the Center for Phage Technology at Texas A\&M University, for editing help
 % ESR: TODO: Someone feel free to rewrite that.
 
 
