@@ -68,7 +68,7 @@ associated configuration data. The configuration of the plugin allows for additi
 for production instances. The plugin can be forced to send data using SSL and to use password authentication.
 Additionally, the name of a custom Docker image can be provided in the configuration. This image will be downloaded and 
 installed from the Docker Hub. The default Docker image is specially crafted to use in conjunction with the IPython plugin
-and will be described in more detail later. The configuration is also responsible for providing a history data set 
+and will be described in more detail later. The configuration is also responsible for providing a history dataset 
 association (HDA) for the template file in order to get access to the data. \\
 The template file of the plugin is written in Mako, a Python template engine which can be used in conjunction with HTML
 % RFY: Mako needs a reference
@@ -104,14 +104,14 @@ is still being used by checking the network traffic. If the page with the IPytho
 % RFY: "after a minute", literally 60 seconds or after a defined period of time?
 Docker process automatically terminates itself. Furthermore, two important custom functions are defined which enable the
 user to load data from the history or store data to the Galaxy history respectively using the Galaxy API \citep{Sloggett2013}.
-The \textbf{\texttt{get}} function expects one parameter with the identifier of the data set which corresponds to the number
-of the data set in the history. The \textbf{\texttt{put}} function automatically builds a connection to the host
+The \textbf{\texttt{get}} function expects one parameter with the identifier of the dataset which corresponds to the number
+of the dataset in the history. The \textbf{\texttt{put}} function automatically builds a connection to the host
 Galaxy instance with the correct history ID and uploads a specified file inside the Docker container to the user's
-history from which the IPython service was started. The flexibility of this plugin is obvious: any data set can be
-loaded into the notebook, data sets can be combined or modified, and the results can be written back to the history
+history from which the IPython service was started. The flexibility of this plugin is obvious: any dataset can be
+loaded into the notebook, datasets can be combined or modified, and the results can be written back to the history
 all without the need for the user to download and upload data. \\
 % Lack of segue between "itself. Furthermore"
-Upon starting the IPython IE a check is performed on the data set from which the IPython IE was called; compatible IPython
+Upon starting the IPython IE a check is performed on the dataset from which the IPython IE was called; compatible IPython
 notebooks will be reused, while other datasets utilize a notebook generated from a template. It should be stressed that
 this functionality ensures the reproducibility of data analysis performed with this plugin, and is therefore an essential
 feature.
@@ -122,11 +122,11 @@ feature.
 \subsection{Plotting Data}
 Prior to the existence of the Galaxy IPython plugin, if a user wanted to transform and plot a specific column of a dataset and
 get the result in a file of the Scalable Vector Graphics (SVG) format to do further image manipulation,
-the user would have to download the data set which could take a long time depending on the file size and their internet
+the user would have to download the dataset which could take a long time depending on the file size and their internet
 connection, complete their plotting of the dataset and record their commands to make it reproducible.
 The task of plotting seems trivial at first because there are several useful tools in the toolshed for data visualization,
 however these fail to provide a user and research friendly workflow. With the use of the IPython IE plugin the user
-could copy their data set inside the Docker container with the \texttt{get()} command. They can then manipulate the
+could copy their dataset inside the Docker container with the \texttt{get()} command. They can then manipulate the
 data remotely with a fully functional Python shell, generate their plots, and finally store datasets and their notebooks.
 This workflow reduces the input time and effort required on the end user significantly, the process of generating the plot
 and exporting it as an SVG file becomes a matter of a few lines of Python and a couple of mouse clicks.
@@ -141,7 +141,7 @@ p.plotfile(filename,delimiter='\t',cols=(0,12))
 p.savefig("col12.svg")
 put("col12.svg")
 \end{lstlisting}
-In the code example the data set which has the ID 57 in the Galaxy history is loaded into the IPython notebook inside the
+In the code example the dataset which has the ID 57 in the Galaxy history is loaded into the IPython notebook inside the
 plotfile method of an matplolib.pyplot object. Of this file the 13th column is plotted against the first column and the
 resulting plot is stored as a SVG file. The put command copies the image into the Galaxy history, so it is now persistently
 stored and can be downloaded or shared like any other Galaxy object.
