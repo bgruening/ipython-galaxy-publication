@@ -95,8 +95,7 @@ Having abstracted the chosen container into a site-specific configuration option
 and needs can provide Docker images to their users with appropriate tool suites.\\
 During Docker container startup, a cron job is launched which allows for determining whether or not the IPython service
 % RFY: Cite cron
-is still being used by checking the network traffic. If the page with the IPython notebook is closed, after a minute the
-% RFY: "after a minute", literally 60 seconds or after a defined period of time?
+is still being used by checking the network traffic. If the page with the IPython notebook is closed, within 60 seconds the
 Docker process automatically terminates itself. Furthermore, two important custom functions are defined which enable the
 user to load data from the history or store data to the Galaxy history respectively using the Galaxy API \citep{Sloggett2013}.
 The \textbf{\texttt{get}} function expects one parameter with the identifier of the dataset which corresponds to the number
