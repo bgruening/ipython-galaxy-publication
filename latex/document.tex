@@ -233,8 +233,8 @@ The example explained above is just a glimpse of what could be done with the ful
 of giving a user access to such a powerful tool as IPython, running on a Galaxy server, with the flexibility to install
 packages as needed, has been resolved by running the IPython web service inside a Docker container. This 
 % RFY: "sanboxes", is this jargon? If not, reference. I think just saying "isolates"
-isolating IE users from the rest of the Galaxy server such that they can not break the system or read sensitive data from other
-users. The user is additionally restricted by limits which administrators have placed on Docker containers,
+isolating IE users from the rest of the Galaxy server, protecting the system and keeping sensitive data secure.
+The user is additionally restricted by limits which administrators have placed on Docker containers,
 hopefully preventing single users from launching denial of service attacks through over-use of memory/CPU cycles.
 %TODO: Implement https://github.com/bgruening/galaxy-ipython/issues/24
 
