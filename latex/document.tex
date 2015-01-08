@@ -113,26 +113,21 @@ feature.
 
 \section{Use Cases}
 \subsection{Plotting Data}
+The task of plotting may seem trivial at first because there are several useful tools in the toolshed for data visualization,
+however these fail to provide a user and research friendly workflow.
+% RFY: The idea is that the Galaxy toolshed has limited plotting routines
+% but many more are available in Python? or that people will do ad hoc Python
+% scripting? This is unclear
+% ESR: It's unclear to me too, and how that should be corrected.
 Heretofore, a Galaxy user who wanted to transform and plot a specific column of a dataset and
 get the result in a file of the Scalable Vector Graphics (SVG) format to do further image manipulation,
 would have to download the dataset, a time-consuming process depending on file size and their internet
 connection. In addition, the user would have to have to record the commands used for plotting, if reproducibility was desired.
-% RFY: (on "the task...friendly workflow") This should go first in the
-% paragraph. The idea is that the Galaxy toolshed has limited plotting routines
-% but many more are available in Python? or that people will do ad hoc Python
-% scripting? This is unclear
-The task of plotting may seem trivial at first because there are several useful tools in the toolshed for data visualization,
-however these fail to provide a user and research friendly workflow. With the use of the IPython IE plugin, the user
+With the use of the IPython IE plugin, the user
 can easily copy their dataset inside the IPython Notebook with the \texttt{get()} command. There the data can be manipulated 
 % RFY: There is a mismatch between "the user" and "their". In general, try to avoid possessive pronouns
 with a fully functional Python shell, plots generated, and finally datasets and notebooks stored and published.
 This workflow reduces the input time and effort required on the end user significantly.
-The process of generating the plot
-and exporting it as an SVG file becomes a matter of a few lines of Python and a couple of mouse clicks.
-% RFY: This seems a bit casual...needed? 
-% ESR: probably should change to a more technical version of saying "hey, it's
-% faster when you don't try and install 5 pieces of software yourself and then
-% transfer gigs of data across the internet" 
 
 \lstset{language=python,
 morekeywords={put, get}
