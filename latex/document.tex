@@ -81,6 +81,8 @@ and the IPython web service, which will be started in the Docker container, can 
 %This has to be rewritten, but I don't know how it works exactly.. IE can request port from Galaxy? 
 % Most importantly a unique port is attributed to each Docker container so that different users using this plugin on the same server do not interfere with each other. \\
 
+% RFY: I note taht there is an indent here but not at the start of other paragraphs. I recommend indenting every new paragraph
+% ESR: Yes boss, but that's LaTeX and a configuration option, and not so important.
 Once container configuration and other preparatory work are complete, the Docker container is launched with bi-directional
 access to a temporary directory containing the necessary initialization information. The default Docker container is
 custom built and works hand-in-hand with the plugin. The container is built on top of a basic Debian Wheezy installation,
