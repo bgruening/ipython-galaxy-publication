@@ -187,7 +187,6 @@ part of their research effort.
 %
 %API key
 
-
 \begin{figure}[!tpb]
 \centerline{\includegraphics{diagram.pdf}}
 \caption{Diagram of the program flow when the IPython IE is used. The IPython IE plugin is divided into two parts;
@@ -203,28 +202,21 @@ terminate itself if it no longer in use.}
 
 \end{methods}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%     please remove the " % " symbol from \centerline{\includegraphics{fig01.eps}}
-%     as it may ignore the figures.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 \section{Conclusion}
 The IPython-Docker container adds versatility to Galaxy by embedding a Python shell in a secure and easy-to-install manner.
 This plugin is a major shortcut for a user with some programming experience who cannot wait for a specific tool to
 be implemented in Galaxy or who needs more control to manipulate data. The potential applications of this plugin are extensive.
 The example explained above is just a glimpse of what could be done with the full SciPy stack. The major security concern
 % RFY: btw, "scipy stack" not defined, reference?
-of giving a user access to such a powerful tool as IPython, running on a Galaxy server, with the flexibility to install
+of giving users access to such a powerful tool as IPython running on a Galaxy server, with the flexibility to install
 packages as needed, has been resolved by running the IPython web service inside a Docker container. This 
-% RFY: "sanboxes", is this jargon? If not, reference. I think just saying "isolates"
 isolates IE users from the rest of the Galaxy server, protecting the system and keeping sensitive data secure.
-The user is additionally restricted by limits which administrators have placed on Docker containers,
+Users are additionally restricted by limits which administrators have placed on Docker containers,
 hopefully preventing single users from launching denial of service attacks through over-use of memory/CPU cycles.
 %TODO: Implement https://github.com/bgruening/galaxy-ipython/issues/24
+%TODO: REALLY need to implement...ever since it went into galaxy and I have to
+%  fight mercurial to make these patches, I've had zero interest in working on
+%  the IE framework. Sorry y'all :(
 
 The user can interact with the Galaxy instance via the two predefined functions \textit{put} and \textit{get} and these two
 functions essentially define the exchange between the container and the Galaxy instance. With the possibility to store the
