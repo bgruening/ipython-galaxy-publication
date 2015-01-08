@@ -76,8 +76,6 @@ and Javascript code to generate web pages. In the first part of this plugin's te
 an Application Programming Interface (API) key for the Docker container, and a unique port for communication. These pieces of information are stored so that Galaxy
 and the Dockerized IPython web service can communicate securely, while isolated from the rest of the server.
 
-% RFY: I note taht there is an indent here but not at the start of other paragraphs. I recommend indenting every new paragraph
-% ESR: Yes boss, but that's LaTeX and a configuration option, and not so important.
 Once container configuration and other preparatory work are complete, the Docker container is launched with bi-directional
 access to a temporary directory containing the necessary initialization information. The default Docker container is
 tailored to this use case, and works hand-in-hand with the plugin. The container is built on top of a basic Debian Wheezy installation,
