@@ -99,7 +99,9 @@ The IPython notebook is then embedded inside the usual Galaxy interface and can 
 Having abstracted the chosen container into a site-specific configuration option, Galaxy instances with different use cases
 and needs can provide Docker images to their users with appropriate tool suites.\\
 During Docker container startup, a cron job is launched which allows for determining whether or not the IPython service
+% RFY: Cite cron
 is still being used by checking the network traffic. If the page with the IPython notebook is closed, after a minute the
+% RFY: "after a minute", literally 60 seconds or after a defined period of time?
 Docker process automatically terminates itself. Furthermore, two important custom functions are defined which enable the
 user to load data from the history or store data to the Galaxy history respectively using the Galaxy API \citep{Sloggett2013}.
 The \textbf{\texttt{get}} function expects one parameter with the identifier of the data set which corresponds to the number
@@ -113,6 +115,7 @@ Upon starting the IPython IE a check is performed on the data set from which the
 notebooks will be reused, while other datasets utilize a notebook generated from a template. It should be stressed that
 this functionality ensures the reproducibility of data analysis performed with this plugin, and is therefore an essential
 feature.
+% RFY: This sentence is not clear to me. Of course, that may just reflect my ignorance. But if it is important, it should be a bit clearer?
 
 
 \section{Use Cases}
