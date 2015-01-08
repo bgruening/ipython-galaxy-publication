@@ -96,7 +96,7 @@ and needs can provide Docker images to their users with appropriate tool suites.
 During Docker container startup, a cron job is launched which allows for determining whether or not the IPython service
 % RFY: Cite cron
 is still being used by checking the network traffic. If the page with the IPython notebook is closed, within 60 seconds the
-Docker process automatically terminates itself. Furthermore, two important custom functions are defined which enable the
+Docker process automatically terminates itself. Within the IPython Notebook, two important custom functions are defined which enable the
 user to load data from the history or store data to the Galaxy history respectively using the Galaxy API \citep{Sloggett2013}.
 The \textbf{\texttt{get}} function expects one parameter with the identifier of the dataset which corresponds to the number
 of the dataset in the history. The \textbf{\texttt{put}} function automatically builds a connection to the host
@@ -104,7 +104,6 @@ Galaxy instance with the correct history ID and uploads a specified file inside 
 history from which the IPython service was started. The flexibility of this plugin is obvious: any dataset can be
 loaded into the notebook, datasets can be combined or modified, and the results can be written back to the history
 all without the need for the user to download and upload data. \\
-% Lack of segue between "itself. Furthermore"
 Upon starting the IPython IE a check is performed on the dataset from which the IPython IE was called; compatible IPython
 notebooks will be reused, while other datasets utilize a notebook generated from a template. It should be stressed that
 this functionality ensures the reproducibility of data analysis performed with this plugin and is therefore an essential
