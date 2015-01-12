@@ -28,7 +28,7 @@ However, if tools are not available in the Galaxy Tool Shed, a Galaxy administra
 This forces the user to download their data and leave the Galaxy environment for further analysis. The integration of 
 IPython in Galaxy allows for analysis of data within the Galaxy framework with the full versatility of Python and its 
 scientific libraries. This bridges the gap between users with programming experience and Galaxy by adding the flexibility 
-of quickly prototyping solutions' problems and doing data analysis, while staying within the context of the Galaxy 
+of quickly prototyping solutions to problems and doing data analysis, while staying within the context of the Galaxy 
 framework and retaining the large toolset already available. IPython is executed in a Docker container which is 
 invoked and terminated automatically. This design provides a secure framework for the user and the Galaxy system.
 
@@ -46,11 +46,10 @@ The Docker image is hosted on Docker Hub under bgruening/docker-ipython-notebook
 
 
 The Galaxy platform \citep{Blank2010,Giardine2005,Goecks2010} has made advanced bioinformatics software accessible
-to life scientists for many years. Galaxy has a default set of analysis tools and can be extended with additional
-tools by locally produced tools, or by using the community driven collections of tools available from the Galaxy Tool Shed
-\citep{Blankenber2014}. This approach to extend Galaxy and adding new data analysis tools to a Galaxy instance is sufficient
+to life scientists for many years. Galaxy has a default set of analysis tools and can be extended with additional locally produced tools, or by using the community driven collections of tools available from the Galaxy Tool Shed
+\citep{Blankenberg2014}. This approach to extend Galaxy and adding new data analysis tools to a Galaxy instance is sufficient
 in most cases, but a more flexible tool allowing for a more tailored analysis may be needed.
-In this work the IPython Galaxy project is introduced by extending the Galaxy framework with an interface to an
+In this work the IPython Galaxy project is introduced which extends the Galaxy framework with an interface to an
 IPython \citep{Perez2007} instance running inside a Docker container.
 IPython provides a web service which allows for a graphical and interactive way to compute and visualize data, 
 extensible through publicly available Python libraries. The IPython instance is run within a Docker container, 
@@ -79,7 +78,7 @@ and the Dockerized IPython web service can communicate securely, while isolated 
 Once container configuration and other preparatory work are complete, the Docker container is launched with bi-directional
 access to a temporary directory containing the necessary initialization information. The default Docker container is
 tailored to this use case, and works hand-in-hand with the plugin. The container is built on top of a basic Debian Wheezy installation,
-and provides a basic IPython server, with its dependencies and some extra Python libraries such as NumPy, SciPy and Matplotlib.
+and provides a basic IPython server, with its dependencies and some extra Python libraries such as NumPy \citep{Walt2011}, SciPy \citep{Jones2015} and Matplotlib \citep{Hunter2007}.
 % RFY: reference numpy/scipy/matplotlib, all software packages used
 % RFY: since these are proper names, they should be referenced
 By providing images with a full suite of Python scientific analysis tools and libraries, users are able 
@@ -91,11 +90,12 @@ Having abstracted the chosen container into a site-specific configuration option
 and needs can provide Docker images to their users with appropriate tool suites.\\
 During Docker container startup, a cron job is launched which allows for determining whether or not the IPython service
 % RFY: Cite cron
+% TH: I can't find a citation for cron. A book about NIX utilities could be cited maybe..
 is still being used by checking the network traffic. If the page with the IPython notebook is closed, within 60 seconds the
 Docker process automatically terminates itself. Within the IPython Notebook, two important custom functions are defined which enable the
 user to load data from the history or store data to the Galaxy history respectively using the Galaxy API \citep{Sloggett2013}.
-The \textbf{\texttt{get}} function expects one parameter with the identifier of the dataset which corresponds to the number
-of the dataset in the history. The \textbf{\texttt{put}} function automatically builds a connection to the host
+The \textit{get} function expects one parameter with the identifier of the dataset which corresponds to the number
+of the dataset in the history. The \textit{put} function automatically builds a connection to the host
 Galaxy instance with the correct history ID and uploads a specified file inside the Docker container to the user's
 history from which the IPython service was started. The flexibility of this plugin is obvious: any dataset can be
 loaded into the notebook, datasets can be combined or modified, and the results can be written back to the history
@@ -118,24 +118,23 @@ Heretofore, a Galaxy user who wanted to transform and plot a specific column of 
 get the result in a file of the Scalable Vector Graphics (SVG) format to do further image manipulation,
 would have to download the dataset, a time-consuming process depending on file size and their internet
 connection. In addition, the user would have to have to record the commands used for plotting, if reproducibility was desired.
-With the use of the IPython IE plugin, the user can easily load datasets inside the IPython Notebook with the \texttt{get()} command. There the data can be manipulated 
+With the use of the IPython IE plugin, the user can easily load datasets inside the IPython Notebook with the \textit{get} command. There the data can be manipulated 
 with a fully functional Python shell, plots generated, and finally datasets and notebooks stored and published.
 This workflow reduces the input time and effort required on the end user significantly.
 
 \lstset{language=python,
 morekeywords={put, get}
 }
-\begin{lstlisting}[frame=single]
+\begin{lstlisting}[frame=single,caption={Use Case Example},label=code:import]]
 from matplotlib import pyplot as p
 filename = get(57)
 p.plotfile(filename,delimiter='\t',cols=(0,12))
 p.savefig("col12.svg")
 put("col12.svg")
-\label{code:import}
 \end{lstlisting}
 In the code listing~\ref{code:import}, the dataset which has the ID 57 in the Galaxy history is loaded into the IPython notebook inside the
 plotfile method of an matplolib.pyplot object. Of this file the 13th column is plotted against the first column and the
-resulting plot is stored as a SVG file. The put command copies the image into the Galaxy history, so it is now persistently
+resulting plot is stored as a SVG file. The \textit{put} command copies the image into the Galaxy history, so it is now persistently
 stored and can be downloaded or shared like any other Galaxy object.
 
 \subsection{API Interaction}
@@ -220,7 +219,7 @@ This way users with no programming experience can benefit from notebooks develop
 
 \section*{Acknowledgement}
 We would like to thank the Galaxy team and the Galaxy community for being so inspiring and helpful. 
-Additionally we would like to thank Dr.\~Ryland Young, of the Center for Phage Technology at Texas A\&M University, for editing help
+Additionally we would like to thank Dr.~Ryland Young, of the Center for Phage Technology at Texas A\&M University, for editing help
 % ESR: TODO: Someone feel free to rewrite that.
 
 
@@ -255,6 +254,15 @@ Sloggett, C. {\it et~al}., (2013) BioBlend: automating pipeline analyses within 
 
 \bibitem[Blankenberg {\it et~al}., 2014]{Blankenberg2014}
 Blankenberg, A. {\it et~al}., (2014) Dissemination of scientific software with Galaxy ToolShed. \textit{Genome Biol.}, {\bf 15}, 403.
+
+\bibitem[van der Walt {\it et~al}., 2011]{Walt2011}
+van der Walt, S. {\it et~al}., (2011) The NumPy Array: A Structure for Efficient Numerical Computation \textit{Comput. Sci. Eng.}, {\bf 13}, 22-30.
+
+\bibitem[Jones {\it et~al}., 2015]{Jones2015}
+Jones, E. {\it et~al}., (2015) SciPy: Open Source Scientific Tools for Python  \textit{online}, http://www.scipy.org
+
+\bibitem[Hunter, 2007]{Hunter2007}
+Hunter, J. , (2007) Matplotlib: A 2D Graphics Environment \textit{Comput. Sci. Eng.}, {\bf 9}, 90-95.
 
 
 
