@@ -124,13 +124,12 @@ This workflow reduces the input time and effort required on the end user signifi
 \lstset{language=python,
 morekeywords={put, get}
 }
-\begin{lstlisting}[frame=single]
+\begin{lstlisting}[frame=single,caption={Use Case Example},label=code:import]]
 from matplotlib import pyplot as p
 filename = get(57)
 p.plotfile(filename,delimiter='\t',cols=(0,12))
 p.savefig("col12.svg")
 put("col12.svg")
-\label{code:import}
 \end{lstlisting}
 In the code listing~\ref{code:import}, the dataset which has the ID 57 in the Galaxy history is loaded into the IPython notebook inside the
 plotfile method of an matplolib.pyplot object. Of this file the 13th column is plotted against the first column and the
