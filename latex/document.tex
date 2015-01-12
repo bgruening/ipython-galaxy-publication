@@ -93,8 +93,8 @@ During Docker container startup, a cron job is launched which allows for determi
 is still being used by checking the network traffic. If the page with the IPython notebook is closed, within 60 seconds the
 Docker process automatically terminates itself. Within the IPython Notebook, two important custom functions are defined which enable the
 user to load data from the history or store data to the Galaxy history respectively using the Galaxy API \citep{Sloggett2013}.
-The \textbf{\texttt{get}} function expects one parameter with the identifier of the dataset which corresponds to the number
-of the dataset in the history. The \textbf{\texttt{put}} function automatically builds a connection to the host
+The \textit{get} function expects one parameter with the identifier of the dataset which corresponds to the number
+of the dataset in the history. The \textit{put} function automatically builds a connection to the host
 Galaxy instance with the correct history ID and uploads a specified file inside the Docker container to the user's
 history from which the IPython service was started. The flexibility of this plugin is obvious: any dataset can be
 loaded into the notebook, datasets can be combined or modified, and the results can be written back to the history
@@ -117,7 +117,7 @@ Heretofore, a Galaxy user who wanted to transform and plot a specific column of 
 get the result in a file of the Scalable Vector Graphics (SVG) format to do further image manipulation,
 would have to download the dataset, a time-consuming process depending on file size and their internet
 connection. In addition, the user would have to have to record the commands used for plotting, if reproducibility was desired.
-With the use of the IPython IE plugin, the user can easily load datasets inside the IPython Notebook with the \textbf{\texttt{get}} command. There the data can be manipulated 
+With the use of the IPython IE plugin, the user can easily load datasets inside the IPython Notebook with the \textit{get} command. There the data can be manipulated 
 with a fully functional Python shell, plots generated, and finally datasets and notebooks stored and published.
 This workflow reduces the input time and effort required on the end user significantly.
 
@@ -133,7 +133,7 @@ put("col12.svg")
 \end{lstlisting}
 In the code listing~\ref{code:import}, the dataset which has the ID 57 in the Galaxy history is loaded into the IPython notebook inside the
 plotfile method of an matplolib.pyplot object. Of this file the 13th column is plotted against the first column and the
-resulting plot is stored as a SVG file. The \textbf{\texttt{put}} command copies the image into the Galaxy history, so it is now persistently
+resulting plot is stored as a SVG file. The \textit{put} command copies the image into the Galaxy history, so it is now persistently
 stored and can be downloaded or shared like any other Galaxy object.
 
 \subsection{API Interaction}
