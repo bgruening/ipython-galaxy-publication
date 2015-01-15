@@ -78,7 +78,7 @@ and the Dockerized IPython web service can communicate securely, while isolated 
 Once container configuration and other preparatory work are complete, the Docker container is launched with bi-directional
 access to a temporary directory containing the necessary initialization information. The default Docker container is
 tailored to this use case, and works hand-in-hand with the plugin. The container is built on top of a basic Debian Wheezy installation,
-and provides a IPython server, with its dependencies and additional Python libraries such as NumPy \citep{Walt2011}, SciPy \citep{Jones2015} and Matplotlib \citep{Hunter2007}.
+and provides an IPython server, with its dependencies and additional Python libraries such as NumPy \citep{Walt2011}, SciPy \citep{Jones2015} and Matplotlib \citep{Hunter2007}.
 By providing images with a full suite of Python scientific analysis tools and libraries, users are able 
 to immediately perform their intricate analysis and calculations. Additional Python packages can be installed with Python
 package managers, e.g.\ pip. The same is true for R packages or anything that can be installed in a non-privileged user account. 
@@ -86,7 +86,7 @@ package managers, e.g.\ pip. The same is true for R packages or anything that ca
 The IPython notebook is then embedded inside the usual Galaxy interface and can be used to interactively program in Python.
 Having abstracted the chosen container into a site-specific configuration option, Galaxy instances with different use cases
 and needs can provide Docker images to their users with appropriate tool suites.\\
-During Docker container startup, a cron job is launched monitors whether the IPython service
+During Docker container startup, a cron job is launched, monitoring whether the IPython service
 is still being used by checking the network traffic. If the page with the IPython notebook is closed, the
 Docker process automatically terminates itself. Within the IPython Notebook, 
 two important custom functions are defined which enable the
@@ -96,7 +96,7 @@ of the dataset in the history. The \textit{put} function automatically builds a 
 Galaxy instance and uploads a specified file from inside the Docker container to the user's
 history. The flexibility of this plugin is obvious: any dataset can be
 loaded into the notebook, datasets can be combined or modified, and the results can be written back to the history
-all without the need for the user to download or upload data. \\
+all without the need for the user to upload or download data. \\
 Upon starting the IPython IE, if the dataset used for launching the IE is an IPython
 notebook, it can be directly reused. Other datasets utilize a default notebook template. It should be stressed that
 this functionality ensures the reproducibility of data analysis performed with this plugin and is therefore an essential
@@ -196,7 +196,7 @@ The IPython Interactive Environment adds versatility to Galaxy by embedding a Py
 This plugin is a major shortcut for a user with programming experience who cannot wait for a specific tool to
 be implemented in Galaxy or who needs more control to manipulate data. The potential applications of this plugin are extensive.
 The example explained above is just a glimpse of what could be done with the full scientific Python stack.
-The major security concern of giving users access a potentially exploidable tool like IPython, 
+The major security concern of giving users access a potentially exploitable tool like IPython, 
 has been resolved by running the IPython web service inside a Docker container. This 
 isolates IE users from the rest of the Galaxy server, protecting the system and keeping sensitive data secure.
 Users are additionally restricted by limits which administrators have placed on Docker containers,
