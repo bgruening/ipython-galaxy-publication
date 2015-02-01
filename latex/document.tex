@@ -93,8 +93,9 @@ The \textit{get} function expects one parameter with the identifier of the datas
 of the dataset in the history. The \textit{put} function automatically builds a connection to the host
 Galaxy instance and uploads a specified file from inside the Docker container to the user's
 history. The flexibility of this plugin is obvious: any dataset can be
-loaded into the notebook, datasets can be combined or modified, and the results can be written back to the history
-all without the need for the user to upload or download data. \\
+loaded into the notebook, datasets can be combined or modified, and the results can be written back to the history.
+The entire traffic occures between the Galaxy host and the IPython Docker container without the need for the user to upload or download data to the client. \\
+%Todo this needs to be rewritten ...
 Upon starting the IPython IE, if the dataset used for launching the IE is an IPython
 notebook, it can be directly reused. Other datasets utilize a default notebook template. It should be stressed that
 this functionality ensures the reproducibility of data analysis performed with this plugin and is therefore an essential
@@ -128,7 +129,7 @@ p.savefig("col12.svg")
 put("col12.svg")
 \end{lstlisting}
 In code listing~\ref{code:import}, the dataset which has the ID 57 in the Galaxy history is loaded into the IPython notebook inside the
-plotfile method of a matplolib.pyplot object. Of this file the 13th column is plotted against the first column and the
+plotfile method of a matplolib.pyplot object. The 13th column of this file is plotted against the first column and the
 resulting plot is stored as a SVG file. The \textit{put} command copies the image into the Galaxy history, creating a persistent
 downloadable and sharable Galaxy object.
 
