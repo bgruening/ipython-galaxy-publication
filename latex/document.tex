@@ -79,7 +79,7 @@ access to a temporary directory containing the necessary initialization informat
 and provides an IPython server, with its dependencies and additional Python libraries such as NumPy \citep{Walt2011}, SciPy \citep{Jones2015} and Matplotlib \citep{Hunter2007}.
 By providing a Docker image with a full suite of Python scientific analysis tools and libraries, users are able 
 to immediately perform their analysis and calculations. Additional Python packages can be installed with Python
-package managers, e.g.\ pip. The same holds for R packages or anything that can be installed in a non-privileged user account. 
+package managers, e.g.\ pip. The same holds for R packages. Moreover, tools that can be installed in a non-privileged user account can be added to the container on demand. 
 % RFY: Same as above. Pip and R need to be referenced
 The IPython notebook is then embedded inside the usual Galaxy interface and can be used to interactively program in Python.
 Having abstracted the chosen container into a site-specific configuration option, Galaxy instances with different use cases
