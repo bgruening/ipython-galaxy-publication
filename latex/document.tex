@@ -63,7 +63,7 @@ IPython notebooks allow for saved and embedded logs of analysis, furthering the 
 IPython is integrated as an Interactive Environment (IE) in Galaxy. The program flow is illustrated in 
 figure~\ref{fig:diagram}. An Interactive Environment primarily consists of a python Mako template file and some
 associated configuration data. The IE configuration allows for additional security constraints which is useful
-for production instances. The plugin can be forced to send data using SSL and to use password authentication.
+for production instances. Password authentification and encrypted data transfer via SSL are both available.
 Additionally, the name of a custom Docker image can be provided in the configuration. This image will be downloaded and 
 installed from the Docker Hub. The default Docker image is specially crafted for use in conjunction with the I
 Python Interactive Environment and will be described in more detail later. The configuration is also responsible for providing a history dataset 
