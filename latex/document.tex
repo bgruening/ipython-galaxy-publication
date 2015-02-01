@@ -72,7 +72,7 @@ The template file of the plugin is written in Mako, a Python template engine whi
 % RFY: Mako needs a reference
 and Javascript code to generate web pages. In the first part of this plugin's template file, a configuration is generated with a password, 
 an Application Programming Interface (API) key for the Docker container, and a unique port for communication. These pieces of information are stored so that Galaxy
-and the Dockerized IPython web service can communicate securely, while isolated from the rest of the server.
+and the Dockerized IPython web service can communicate securely, while isolated from the rest of the Galaxy instance.
 
 Once container configuration and other preparatory work are complete, the Docker container is launched with bi-directional
 access to a temporary directory containing the necessary initialization information. The default Docker container is
