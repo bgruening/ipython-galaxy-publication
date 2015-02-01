@@ -75,8 +75,7 @@ an Application Programming Interface (API) key for the Docker container, and a u
 and the Dockerized IPython web service can communicate securely, while isolated from the rest of the Galaxy instance.
 
 Once container configuration and other preparatory work are complete, the Docker container is launched with bi-directional
-access to a temporary directory containing the necessary initialization information. The default Docker container is
-tailored to this use case, and works hand-in-hand with the plugin. The container is built on top of a basic Debian Wheezy installation,
+access to a temporary directory containing the necessary initialization information. The container is built on top of a basic Debian Wheezy installation,
 and provides an IPython server, with its dependencies and additional Python libraries such as NumPy \citep{Walt2011}, SciPy \citep{Jones2015} and Matplotlib \citep{Hunter2007}.
 By providing images with a full suite of Python scientific analysis tools and libraries, users are able 
 to immediately perform their intricate analysis and calculations. Additional Python packages can be installed with Python
