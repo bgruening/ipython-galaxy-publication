@@ -8,7 +8,7 @@
 \firstpage{1}
 
 \title[short Title]{Adding versatility to Galaxy with the Dockerized integration of IPython}
-\author[Sample \textit{et~al}]{Eric Rasche\,$^{2}$, Torsten Houwaart\,$^{1}$, John Chilton\,$^{3}$, Bj\"orn A. Gr\"uning\,$^{1}$ and Rolf Backofen\,$^{1}$\,\footnote{to whom correspondence should be addressed}}
+\author[Sample \textit{et~al}]{Eric Rasche\,$^{2}$, Torsten Houwaart\,$^{1}$, John Chilton\,$^{3}$, Rolf Backofen\,$^{1}$ and Bj\"orn A. Gr\"uning \,$^{1}$\,\footnote{to whom correspondence should be addressed}}
 \address{$^{1}$Bioinformatics Group, Department of Computer Science, University of Freiburg\\
 $^{2}$Center for Phage Technology, Texas A\&M University\\
 $^{3}$Department of Biochemistry and Molecular Biology, Penn State University}
@@ -25,7 +25,7 @@ $^{3}$Department of Biochemistry and Molecular Biology, Penn State University}
 \section{Summary:}
 The Galaxy Tool Shed enables easy installation, dependency management, and updates of tools in the Galaxy ecosystem. 
 However, if tools are not available in the Galaxy Tool Shed, a Galaxy administrator often cannot help a user directly. 
-This forces the user to download their data and leave the Galaxy environment for further analysis. The integration of 
+This forces the user to download their data and exit the Galaxy environment to perform further analysis. The integration of 
 IPython in Galaxy allows for analysis of data within the Galaxy framework with the full versatility of Python and its 
 scientific libraries. This bridges the gap between users with programming experience and Galaxy by adding the flexibility 
 of quickly prototyping solutions to problems and doing data analysis, while staying within the context of the Galaxy 
@@ -35,11 +35,10 @@ invoked and terminated automatically. This design provides a secure framework fo
 
 \section{Availability and implementation:}
 The integration of IPython in Galaxy was accomplished via the Galaxy Interactive Environment Framework. 
-Notebook level security is provided by IPython isolation within a Docker container. This Galaxy plugin 
-is freely available under the MIT License and can be downloaded from https://github.com/bgruening/galaxy-ipython. 
-The Docker image is hosted on Docker Hub under bgruening/docker-ipython-notebook and is used automatically by the plugin.
+IPython Notebook security is provided by isolation within a Docker container. The IPython IE
+is now part of Galaxy and is freely available under the MIT License. The Docker image is hosted on Docker Hub under bgruening/docker-ipython-notebook and is used automatically by the IE.
 
-\section{Contact:} \href{gruening@informatik.uni-freiburg.de}{gruening@informatik.uni-freiburg.de}
+\section{Contact:} \href{bjoern.gruening@gmail.com}{bjoern.gruening@gmail.com}
 \end{abstract}
 
 \section{Introduction}
@@ -47,13 +46,13 @@ The Docker image is hosted on Docker Hub under bgruening/docker-ipython-notebook
 
 The Galaxy platform \citep{Blank2010,Giardine2005,Goecks2010} has made advanced bioinformatics software accessible
 to life scientists for many years. Galaxy has a default set of analysis tools and can be extended with additional locally produced tools, or by using the community driven collections of tools available from the Galaxy Tool Shed
-\citep{Blankenberg2014}. This approach to extend Galaxy and adding new data analysis tools to a Galaxy instance is sufficient
-in most cases, but a more flexible tool allowing for a more tailored analysis may be needed.
-In this work the IPython Galaxy project is introduced which extends the Galaxy framework with an interface to an
+\citep{Blankenberg2014}. This approach to extending Galaxy is sufficient in most cases, but a more flexible tool allowing 
+for more tailored analysis may be needed.
+In this work the IPython Galaxy project is introduced. This project extends the Galaxy framework with an interface to an
 IPython \citep{Perez2007} instance running inside a Docker container.
 IPython provides a web service which allows for a graphical and interactive way to compute and visualize data, 
 extensible through publicly available Python libraries. The IPython instance is run within a Docker container, 
-which isolates the written code from the rest of the system and provides security for both the user and the Galaxy instance. Finally, by providing and encouraging a route for arbitrary data analysis to be accomplished within the Galaxy framework, 
+isolating the written code from the rest of the system and providing security for both the user and the Galaxy instance. Finally, by providing and encouraging a route for arbitrary data analysis to be accomplished within the Galaxy framework, 
 IPython notebooks allow for saved and embedded logs of analysis, furthering the ultimate goal of research reproducibility.
 
 
@@ -61,64 +60,61 @@ IPython notebooks allow for saved and embedded logs of analysis, furthering the 
 \begin{methods}
 \section{Methods}
 
-IPython is integrated as an interactive environment (IE) in Galaxy. The program flow is sketched as a diagram in 
-figure~\ref{fig:diagram}. An interactive environment plugin primarily consists of a python Mako template file and some
-associated configuration data. The configuration of the plugin allows for additional security constraints which is useful
-for production instances. The plugin can be forced to send data using SSL and to use password authentication.
+IPython is integrated as an Interactive Environment (IE) in Galaxy. The program flow is illustrated in 
+figure~\ref{fig:diagram}. An Interactive Environment primarily consists of a python Mako template file and some
+associated configuration data. The IE configuration allows for additional security constraints which is useful
+for production instances. Password authentification and encrypted data transfer via SSL are both available.
 Additionally, the name of a custom Docker image can be provided in the configuration. This image will be downloaded and 
-installed from the Docker Hub. The default Docker image is specially crafted to use in conjunction with the IPython plugin
-and will be described in more detail later. The configuration is also responsible for providing a history dataset 
-association (HDA) for the template file in order to get access to the data. \\
-The template file of the plugin is written in Mako, a Python template engine which can be used in conjunction with HTML
+installed from the Docker Hub. The default Docker image is specially crafted for use in conjunction with the I
+Python Interactive Environment and will be described in more detail later. The configuration is also responsible for providing a history dataset 
+association (HDA) for the template file in order to access the data. \\
+The template file is written in Mako, a Python template engine which can be used in conjunction with HTML
 % RFY: Mako needs a reference
-and Javascript code to generate web pages. In the first part of this plugin's template file, a configuration is generated with a password, 
+and Javascript code to generate web pages. In the first part of the template file, a configuration is generated with a password, 
 an Application Programming Interface (API) key for the Docker container, and a unique port for communication. These pieces of information are stored so that Galaxy
-and the Dockerized IPython web service can communicate securely, while isolated from the rest of the server.
+and the Dockerized IPython web service can communicate securely, while isolated from the rest of the Galaxy instance.
 
 Once container configuration and other preparatory work are complete, the Docker container is launched with bi-directional
-access to a temporary directory containing the necessary initialization information. The default Docker container is
-tailored to this use case, and works hand-in-hand with the plugin. The container is built on top of a basic Debian Wheezy installation,
-and provides a basic IPython server, with its dependencies and some extra Python libraries such as NumPy \citep{Walt2011}, SciPy \citep{Jones2015} and Matplotlib \citep{Hunter2007}.
-% RFY: reference numpy/scipy/matplotlib, all software packages used
-% RFY: since these are proper names, they should be referenced
-By providing images with a full suite of Python scientific analysis tools and libraries, users are able 
-to immediately perform their intricate analysis and calculations. Additional Python packages can be installed with Python
-package managers, e.g.\ pip. The same is true for R packages or anything that can be installed in a non-privileged user account. 
+access to a temporary directory containing the necessary initialization information. The container is built on top of a basic Debian Wheezy installation,
+and provides an IPython server, with its dependencies and additional Python libraries such as NumPy \citep{Walt2011}, SciPy \citep{Jones2015} and Matplotlib \citep{Hunter2007}.
+By providing a Docker image with a full suite of Python scientific analysis tools and libraries, users are able 
+to immediately perform their analysis and calculations. Additional Python packages can be installed with Python
+package managers, e.g.\ pip. The same holds for R packages. Moreover, tools that can be installed in a non-privileged user account can be added to the container on demand. 
 % RFY: Same as above. Pip and R need to be referenced
 The IPython notebook is then embedded inside the usual Galaxy interface and can be used to interactively program in Python.
 Having abstracted the chosen container into a site-specific configuration option, Galaxy instances with different use cases
 and needs can provide Docker images to their users with appropriate tool suites.\\
-During Docker container startup, a cron job is launched which allows for determining whether or not the IPython service
-% RFY: Cite cron
-% TH: I can't find a citation for cron. A book about NIX utilities could be cited maybe..
-is still being used by checking the network traffic. If the page with the IPython notebook is closed, within 60 seconds the
-Docker process automatically terminates itself. Within the IPython Notebook, two important custom functions are defined which enable the
-user to load data from the history or store data to the Galaxy history respectively using the Galaxy API \citep{Sloggett2013}.
+During Docker container startup, a cron job is launched, monitoring whether the IPython service
+is still being used by checking the network traffic. If the page with the IPython notebook is closed, the
+Docker process automatically terminates itself. Within the IPython Notebook, 
+two important custom functions are defined which enable the
+user to load data from the history or store data to the Galaxy history using the Galaxy API \citep{Sloggett2013}.
 The \textit{get} function expects one parameter with the identifier of the dataset which corresponds to the number
 of the dataset in the history. The \textit{put} function automatically builds a connection to the host
-Galaxy instance with the correct history ID and uploads a specified file inside the Docker container to the user's
-history from which the IPython service was started. The flexibility of this plugin is obvious: any dataset can be
-loaded into the notebook, datasets can be combined or modified, and the results can be written back to the history
-all without the need for the user to download and upload data. \\
+Galaxy instance and uploads a specified file from inside the Docker container to the user's
+history. The flexibility is obvious: any dataset can be
+loaded into the notebook, datasets can be combined or modified, and the results can be written back to the history.
+The entire traffic occures between the Galaxy host and the IPython Docker container without the need for the user to upload or download data to the client. \\
+%Todo this needs to be rewritten ...
 Upon starting the IPython IE, if the dataset used for launching the IE is an IPython
 notebook, it can be directly reused. Other datasets utilize a default notebook template. It should be stressed that
-this functionality ensures the reproducibility of data analysis performed with this plugin and is therefore an essential
-feature.
+this functionality ensures the reproducibility of data analysis and is therefore an essential
+feature of the IPython Interactive Environment.
 
 
 \section{Use Cases}
 \subsection{Plotting Data}
-The task of plotting may seem trivial at first because there are several useful tools in the toolshed for data visualization,
-however these fail to provide a user and research friendly workflow.
+The task of plotting may seem trivial at first because there are several useful tools in the toolshed for data visualization.
+However, these fail to provide a user and research-friendly workflow.
 % RFY: The idea is that the Galaxy toolshed has limited plotting routines
 % but many more are available in Python? or that people will do ad hoc Python
 % scripting? This is unclear
 % ESR: It's unclear to me too, and how that should be corrected.
-Heretofore, a Galaxy user who wanted to transform and plot a specific column of a dataset and
+Heretofore, a Galaxy user wanting to transform and plot a specific column of a dataset and
 get the result in a file of the Scalable Vector Graphics (SVG) format to do further image manipulation,
 would have to download the dataset, a time-consuming process depending on file size and their internet
 connection. In addition, the user would have to have to record the commands used for plotting, if reproducibility was desired.
-With the use of the IPython IE plugin, the user can easily load datasets inside the IPython Notebook with the \textit{get} command. There the data can be manipulated 
+With the use of the IPython IE, the user can easily load datasets inside the IPython Notebook with the \textit{get} command. There the data can be manipulated 
 with a fully functional Python shell, plots generated, and finally datasets and notebooks stored and published.
 This workflow reduces the input time and effort required on the end user significantly.
 
@@ -132,18 +128,21 @@ p.plotfile(filename,delimiter='\t',cols=(0,12))
 p.savefig("col12.svg")
 put("col12.svg")
 \end{lstlisting}
-In the code listing~\ref{code:import}, the dataset which has the ID 57 in the Galaxy history is loaded into the IPython notebook inside the
-plotfile method of an matplolib.pyplot object. Of this file the 13th column is plotted against the first column and the
-resulting plot is stored as a SVG file. The \textit{put} command copies the image into the Galaxy history, so it is now persistently
-stored and can be downloaded or shared like any other Galaxy object.
+In code listing~\ref{code:import}, the dataset which has the ID 57 in the Galaxy history is loaded into the IPython notebook inside the
+plotfile method of a matplolib.pyplot object. The 13th column of this file is plotted against the first column and the
+resulting plot is stored as a SVG file. The \textit{put} command copies the image into the Galaxy history, creating a persistent
+downloadable and sharable Galaxy object.
+
 
 \subsection{API Interaction}
-The Galaxy IPython IE plugin is not designed to restrict the user. Rather, the intention is to liberate
+The Galaxy IPython IE is not designed to restrict the user. Rather, the intention is to enable
 them to do the desired analyses with best practices. To this end, the IPython Notebook provides direct access to a pre-configured
 BioBlend object, allowing the user to make API calls as necessary. Having access to the API can be invaluable for running
-batch analyses, launching multiple workflows over numerous datasets, etc. In order to respect security, information necessary
-to accomplish this is stored outside of notebooks and available inside notebooks as static variables. The user is able to use
-\texttt{API\_KEY} without displaying their API key, which is invaluable if the user intends to publish their notebook as
+batch analyses, launching multiple workflows over numerous datasets, etc. 
+% this needs a small rewrite I guess
+In order to respect security, information necessary
+to accomplish this is stored outside of notebooks and available inside as static variables. The user is able to use
+\texttt{API\_KEY} without displaying their API key, which is essential if the user intends to publish their notebook as
 part of their research effort.
 
 %
@@ -180,13 +179,13 @@ part of their research effort.
 
 \begin{figure}[!tpb]
 \centerline{\includegraphics{diagram.pdf}}
-\caption{Diagram of the program flow when the IPython IE is used. The IPython IE plugin is divided into two parts;
-the first part generates initialization information and an IPython notebook, in the second part it launches a container
-from a specific Docker image. In this Docker container, IPython and all its dependencies are installed as well as some Python
+\caption{Program Flow when using IPython IE. The IPython IE is divided into two parts;
+The first part generates initialization information and an IPython notebook, the second part launches a container
+from a specific Docker image. IPython and its dependencies are installed in this Docker container as well as additional Python
 libraries. The configuration file and the IPython notebook are copied to the container and the IPython service is started.
 The second part of the IE template now generates a connection to the web service provided by the Docker container.
-For self cleaning, the container also checks whether or not a connection to it exists, allowing the container to
-terminate itself if it no longer in use.}
+For self cleaning, the container also checks whether a connection to the host exists, enabling self termination 
+if no longer in use.}
 \label{fig:diagram}
 \end{figure}
 
@@ -194,32 +193,26 @@ terminate itself if it no longer in use.}
 \end{methods}
 
 \section{Conclusion}
-The IPython-Docker container adds versatility to Galaxy by embedding a Python shell in a secure and easy-to-install manner.
-This plugin is a major shortcut for a user with some programming experience who cannot wait for a specific tool to
-be implemented in Galaxy or who needs more control to manipulate data. The potential applications of this plugin are extensive.
-The example explained above is just a glimpse of what could be done with the full SciPy stack. The major security concern
-% RFY: btw, "scipy stack" not defined, reference?
-of giving users access to such a powerful tool as IPython running on a Galaxy server, with the flexibility to install
-packages as needed, has been resolved by running the IPython web service inside a Docker container. This 
+The IPython Interactive Environment adds versatility to Galaxy by embedding a Python shell in a secure and easy-to-install manner.
+This Interactive Environment is a major shortcut for a user with programming experience who cannot wait for a specific tool to
+be implemented in Galaxy or who needs more control to manipulate data. The potential applications of this IE are extensive.
+The example explained above is just a glimpse of what could be done with the full scientific Python stack in conjunction with R and a Unix Shell.
+The major security concern of giving users access a potentially exploitable tool like IPython, 
+has been resolved by running the IPython web service inside a Docker container. This 
 isolates IE users from the rest of the Galaxy server, protecting the system and keeping sensitive data secure.
-Users are additionally restricted by limits which administrators have placed on Docker containers,
-hopefully preventing single users from launching denial of service attacks through over-use of memory/CPU cycles.
-%TODO: Implement https://github.com/bgruening/galaxy-ipython/issues/24
-%TODO: REALLY need to implement...ever since it went into galaxy and I have to
-%  fight mercurial to make these patches, I've had zero interest in working on
-%  the IE framework. Sorry y'all :(
-
-The user can interact with the Galaxy instance via the two predefined functions \textit{put} and \textit{get} and these two
-functions essentially define the exchange between the container and the Galaxy instance. With the possibility to store the
-IPython notebook in the history, consistent and reproducible data analysis is possible and encouraged. 
-By publishing or sharing a history containing IPython notebooks, notebooks can be easily shared with other users.
+%Users are additionally restricted by limits which administrators have placed on Docker containers,
+%preventing single users from launching denial of service attacks through over-use of memory/CPU cycles.
+The user can interact with the Galaxy instance via the two predefined functions \textit{put} and \textit{get} 
+which essentially define the exchange between the container and the Galaxy instance.
+Storing IPython notebooks in Galaxy histories enables sharing with other users. 
 This way users with no programming experience can benefit from notebooks developed by users with programming experience.
-
+With these possibilities a consistent and reproducible data analysis is simple and encouraged. 
 
 
 \section*{Acknowledgement}
 We would like to thank the Galaxy team and the Galaxy community for being so inspiring and helpful. 
-Additionally we would like to thank Dr.~Ryland Young, of the Center for Phage Technology at Texas A\&M University, for editing help
+Additionally we would like to thank Dr.~Ryland Young, of the Center for Phage Technology at Texas A\&M University, 
+and Cameron R. Smith, for editing help.
 % ESR: TODO: Someone feel free to rewrite that.
 
 
