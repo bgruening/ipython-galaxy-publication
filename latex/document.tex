@@ -178,8 +178,8 @@ part of their research effort.
 \begin{figure}[!tpb]
 \centerline{\includegraphics{diagram.pdf}}
 \caption{Program Flow when using IPython IE. The IPython IE is divided into two parts;
-the first part generates initialization information and an IPython notebook, the second part launches a container
-from a specific Docker image. In this Docker container, IPython and its dependencies are installed as well as some Python
+The first part generates initialization information and an IPython notebook, the second part launches a container
+from a specific Docker image. IPython and its dependencies are installed in this Docker container as well as additional Python
 libraries. The configuration file and the IPython notebook are copied to the container and the IPython service is started.
 The second part of the IE template now generates a connection to the web service provided by the Docker container.
 For self cleaning, the container also checks whether a connection to it exists, allowing the container to
