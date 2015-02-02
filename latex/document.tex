@@ -87,7 +87,8 @@ package managers, e.g.\ pip. The same holds for R packages. Moreover, tools that
 % RFY: Same as above. Pip and R need to be referenced
 The IPython notebook is then embedded inside the usual Galaxy interface and can be used to interactively program in a variety of programming languages.
 Having abstracted the chosen container into a site-specific configuration option, Galaxy instances with different use cases
-and needs can provide Docker images to their users with appropriate tool suites.\\
+and needs can provide Docker images to their users with appropriate tool suites.
+
 During Docker container startup, a cron job is launched, monitoring whether the IPython service
 is still being used by checking the network traffic. If the page with the IPython notebook is closed, the
 Docker process automatically terminates itself. Within the IPython Notebook, 
@@ -98,7 +99,8 @@ The \textit{put} function automatically builds a connection to the host
 Galaxy instance and uploads a specified file from inside the Docker container to the user's
 history. The flexibility is obvious: any dataset can be
 loaded into the notebook, datasets can be combined or modified, and the results can be written back to the history.
-The entire traffic occures between the Galaxy host and the IPython Docker container without the need for the user to upload or download data to the client. \\
+The entire traffic occures between the Galaxy host and the IPython Docker container without the need for the user to upload or download data to the client.
+
 Notebooks can be saved back to the Galaxy history at any time. Once a notebook is part of a history 
 it can be inspected like any other Galaxy dataset. 
 Additionally, notebooks can be reused. A new IPython instance is created that retains the stored work. 
