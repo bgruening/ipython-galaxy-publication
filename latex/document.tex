@@ -81,7 +81,7 @@ By providing a Docker image with a full suite of Python scientific analysis tool
 to immediately perform their analysis and calculations. Additional Python packages can be installed with Python
 package managers, e.g.\ pip. The same holds for R packages. Moreover, tools that can be installed in a non-privileged user account can be added to the container on demand. 
 % RFY: Same as above. Pip and R need to be referenced
-The IPython notebook is then embedded inside the usual Galaxy interface and can be used to interactively program in Python.
+The IPython notebook is then embedded inside the usual Galaxy interface and can be used to interactively program in a variety of programming languages.
 Having abstracted the chosen container into a site-specific configuration option, Galaxy instances with different use cases
 and needs can provide Docker images to their users with appropriate tool suites.\\
 During Docker container startup, a cron job is launched, monitoring whether the IPython service
