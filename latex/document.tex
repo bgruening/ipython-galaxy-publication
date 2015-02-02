@@ -200,8 +200,8 @@ The example explained above is just a glimpse of what could be done with the ful
 The major security concern of giving users access a potentially exploitable tool like IPython, 
 has been resolved by running the IPython web service inside a Docker container. This 
 isolates IE users from the rest of the Galaxy server, protecting the system and keeping sensitive data secure.
-Users are additionally restricted by limits which administrators have placed on Docker containers,
-preventing single users from launching denial of service attacks through over-use of memory/CPU cycles.
+%Users are additionally restricted by limits which administrators have placed on Docker containers,
+%preventing single users from launching denial of service attacks through over-use of memory/CPU cycles.
 The user can interact with the Galaxy instance via the two predefined functions \textit{put} and \textit{get} and these two
 functions essentially define the exchange between the container and the Galaxy instance.
 Storing IPython notebooks in Galaxy histories enables sharing with other users. 
