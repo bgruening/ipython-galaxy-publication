@@ -139,9 +139,9 @@ The Galaxy IPython IE is not designed to restrict the user. Rather, the intentio
 them to do the desired analyses with best practices. To this end, the IPython Notebook provides direct access to a pre-configured
 BioBlend object, allowing the user to make API calls as necessary. Having access to the API can be invaluable for running
 batch analyses, launching multiple workflows over numerous datasets, etc. 
-
+% this needs a small rewrite I guess
 In order to respect security, information necessary
-to accomplish this is stored outside of notebooks and available inside notebooks as static variables. The user is able to use
+to accomplish this is stored outside of notebooks and available inside as static variables. The user is able to use
 \texttt{API\_KEY} without displaying their API key, which is essential if the user intends to publish their notebook as
 part of their research effort.
 
@@ -196,7 +196,7 @@ if no longer in use.}
 The IPython Interactive Environment adds versatility to Galaxy by embedding a Python shell in a secure and easy-to-install manner.
 This Interactive Environment is a major shortcut for a user with programming experience who cannot wait for a specific tool to
 be implemented in Galaxy or who needs more control to manipulate data. The potential applications of this IE are extensive.
-The example explained above is just a glimpse of what could be done with the full scientific Python stack.
+The example explained above is just a glimpse of what could be done with the full scientific Python stack in conjunction with R and a Unix Shell.
 The major security concern of giving users access a potentially exploitable tool like IPython, 
 has been resolved by running the IPython web service inside a Docker container. This 
 isolates IE users from the rest of the Galaxy server, protecting the system and keeping sensitive data secure.
