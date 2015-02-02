@@ -65,8 +65,9 @@ figure~\ref{fig:diagram}. An Interactive Environment primarily consists of a pyt
 associated configuration data. The IE configuration allows for additional security constraints which is useful
 for production instances. Password authentification and encrypted data transfer via SSL are both available.
 Additionally, the name of a custom Docker image can be provided in the configuration. This image will be downloaded and 
-installed from the Docker Hub. The default Docker image is specially crafted for use in conjunction with the I
-Python Interactive Environment and will be described in more detail later. The configuration is also responsible for providing a history dataset 
+installed from the Docker Hub. The default Docker image is specially crafted for use in conjunction with the
+IPython Interactive Environment and will be described in more detail later. 
+The configuration is also responsible for providing a history dataset 
 association (HDA) for the template file in order to access the data. \\
 The template file is written in Mako, a Python template engine which can be used in conjunction with HTML
 % RFY: Mako needs a reference
@@ -81,7 +82,7 @@ By providing a Docker image with a full suite of Python scientific analysis tool
 to immediately perform their analysis and calculations. Additional Python packages can be installed with Python
 package managers, e.g.\ pip. The same holds for R packages. Moreover, tools that can be installed in a non-privileged user account can be added to the container on demand. 
 % RFY: Same as above. Pip and R need to be referenced
-The IPython notebook is then embedded inside the usual Galaxy interface and can be used to interactively program in Python.
+The IPython notebook is then embedded inside the usual Galaxy interface and can be used to interactively program in a variety of programming languages.
 Having abstracted the chosen container into a site-specific configuration option, Galaxy instances with different use cases
 and needs can provide Docker images to their users with appropriate tool suites.\\
 During Docker container startup, a cron job is launched, monitoring whether the IPython service
@@ -95,55 +96,57 @@ Galaxy instance and uploads a specified file from inside the Docker container to
 history. The flexibility is obvious: any dataset can be
 loaded into the notebook, datasets can be combined or modified, and the results can be written back to the history.
 The entire traffic occures between the Galaxy host and the IPython Docker container without the need for the user to upload or download data to the client. \\
-%Todo this needs to be rewritten ...
-Upon starting the IPython IE, if the dataset used for launching the IE is an IPython
-notebook, it can be directly reused. Other datasets utilize a default notebook template. It should be stressed that
-this functionality ensures the reproducibility of data analysis and is therefore an essential
+Notebooks can be saved back to the Galaxy history at any time. Once a notebook is part of a history 
+it can be inspected as any other Galaxy dataset. 
+Additionaly, it can be reused to start a new IPython instance reloading the saved notebook. 
+It should be stressed that this functionality ensures the reproducibility of data analysis and is therefore an essential
 feature of the IPython Interactive Environment.
 
 
 \section{Use Cases}
-\subsection{Plotting Data}
-The task of plotting may seem trivial at first because there are several useful tools in the toolshed for data visualization.
-However, these fail to provide a user and research-friendly workflow.
-% RFY: The idea is that the Galaxy toolshed has limited plotting routines
-% but many more are available in Python? or that people will do ad hoc Python
-% scripting? This is unclear
-% ESR: It's unclear to me too, and how that should be corrected.
+The Galaxy IPython integration is not designed to restrict the user. Rather, the intention is to enable
+reproducible research with best practices. IPython is not bound to any programming language 
+and offers, with it's modular approach, many additional features through a growing community.
+
+Moreover, the IPython Notebook provides direct access to a pre-configured
+BioBlend object, allowing the user to make API calls as necessary. Having access to the Galaxy programming interface
+can be invaluable for running batch analyses, launching multiple workflows over numerous datasets, etc. 
+%TODO : this needs a small rewrite I guess
+%In order to respect security, information necessary
+%to accomplish this is stored outside of notebooks and available inside as static variables. The user is able to use
+%\texttt{API\_KEY} without displaying their API key, which is essential if the user intends to publish their notebook as
+%part of their research effort.
+
+Merging/Combining? the flexibility of IPython and the powerful Galaxy infrastructure creates an research environment
+with a tremendous amout of freedom and possibilities. Given that we would like to showcase only one simple
+example to demonstrate how easy data manipulation with Galaxy and IPython is. 
+
 Heretofore, a Galaxy user wanting to transform and plot a specific column of a dataset and
 get the result in a file of the Scalable Vector Graphics (SVG) format to do further image manipulation,
 would have to download the dataset, a time-consuming process depending on file size and their internet
-connection. In addition, the user would have to have to record the commands used for plotting, if reproducibility was desired.
-With the use of the IPython IE, the user can easily load datasets inside the IPython Notebook with the \textit{get} command. There the data can be manipulated 
-with a fully functional Python shell, plots generated, and finally datasets and notebooks stored and published.
-This workflow reduces the input time and effort required on the end user significantly.
+connection. In addition, the user would have to record the commands used for plotting, if reproducibility was desired.
+With the use of the IPython IE, the user can easily load datasets inside the IPython Notebook.
+There the data can be manipulated with a fully functional programming shell, plots generated,
+and finally datasets and notebooks stored and published.
+This workflow reduces the input time and effort required on the end user significantly and keeps everything in one place.
 
 \lstset{language=python,
 morekeywords={put, get}
 }
-\begin{lstlisting}[frame=single,caption={Use Case Example},label=code:import]]
+\begin{lstlisting}[frame=single,caption={Plotting example},label=code:import]]
 from matplotlib import pyplot as p
 filename = get(57)
 p.plotfile(filename,delimiter='\t',cols=(0,12))
 p.savefig("col12.svg")
 put("col12.svg")
 \end{lstlisting}
-In code listing~\ref{code:import}, the dataset which has the ID 57 in the Galaxy history is loaded into the IPython notebook inside the
-plotfile method of a matplolib.pyplot object. The 13th column of this file is plotted against the first column and the
-resulting plot is stored as a SVG file. The \textit{put} command copies the image into the Galaxy history, creating a persistent
-downloadable and sharable Galaxy object.
 
+In code listing~\ref{code:import}, the dataset which has the ID 57 in the Galaxy history is loaded 
+into the IPython notebook inside the plotfile method of a \texttt{matplotlib.pyplot} object. 
+The 13th column of this file is plotted against the first column and the
+resulting plot is stored as an SVG file. The \textit{put} command copies the image into the Galaxy history, 
+creating a persistent, downloadable, and sharable Galaxy object.
 
-\subsection{API Interaction}
-The Galaxy IPython IE is not designed to restrict the user. Rather, the intention is to enable
-them to do the desired analyses with best practices. To this end, the IPython Notebook provides direct access to a pre-configured
-BioBlend object, allowing the user to make API calls as necessary. Having access to the API can be invaluable for running
-batch analyses, launching multiple workflows over numerous datasets, etc. 
-% this needs a small rewrite I guess
-In order to respect security, information necessary
-to accomplish this is stored outside of notebooks and available inside as static variables. The user is able to use
-\texttt{API\_KEY} without displaying their API key, which is essential if the user intends to publish their notebook as
-part of their research effort.
 
 %
 %visualization plugin how implemented used because ease of integration
@@ -213,8 +216,6 @@ With these possibilities a consistent and reproducible data analysis is simple a
 We would like to thank the Galaxy team and the Galaxy community for being so inspiring and helpful. 
 Additionally we would like to thank Dr.~Ryland Young, of the Center for Phage Technology at Texas A\&M University, 
 and Cameron R. Smith, for editing help.
-% ESR: TODO: Someone feel free to rewrite that.
-
 
 \paragraph{Funding\textcolon} The project was supported by the German Research Foundation (DFG-grant SFB 992/1).
 
@@ -256,7 +257,6 @@ Jones, E. {\it et~al}., (2015) SciPy: Open Source Scientific Tools for Python  \
 
 \bibitem[Hunter, 2007]{Hunter2007}
 Hunter, J. , (2007) Matplotlib: A 2D Graphics Environment \textit{Comput. Sci. Eng.}, {\bf 9}, 90-95.
-
 
 
 \end{thebibliography}
