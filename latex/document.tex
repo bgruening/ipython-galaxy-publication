@@ -61,7 +61,9 @@ IPython notebooks allow for saved and embedded logs of analysis, furthering the 
 \section{Methods}
 
 IPython is integrated as an Interactive Environment (IE) in Galaxy. The program flow is illustrated in 
-figure~\ref{fig:diagram}. An Interactive Environment primarily consists of a python Mako template and associated configuration. The IE configuration allows for additional security constraints which is useful
+figure~\ref{fig:diagram}. An Interactive Environment primarily consists of a python Mako template, that servers as 
+Interactive Environment Entry Point (IEEP), and associated configuration. 
+The IE configuration allows for additional security constraints which is useful
 for production instances. Password authentification and encrypted data transfer via SSL are both available.
 Additionally, the identifier of a custom Docker image can be provided in the configuration. This image will be downloaded and 
 installed from the Docker Hub. The default Docker image is specifically crafted for use in conjunction with the
@@ -70,10 +72,10 @@ The configuration is also responsible for providing a history dataset
 association (HDA) for the template file in order to access the data. \\
 
 %visualisation entrypoint user interface definition file
-The template is written in Mako, a Python template engine which can be used in conjunction with HTML
-% RFY: Mako needs a reference
-and Javascript to generate web pages. In the first part of the template file, a configuration is generated with a password, 
-an Application Programming Interface (API) key for the Docker container, and a unique port for communication. These pieces of information are stored so that Galaxy
+The IEEP is written in Mako, a Python template engine which can be used in conjunction with HTML
+and Javascript to generate web pages. In the first part of this file, a configuration is generated with a password, 
+an Application Programming Interface (API) key for the Docker container, and a unique port for communication.
+These pieces of information are stored so that Galaxy
 and the Dockerized IPython web service can communicate securely, while isolated from the rest of the Galaxy instance.
 
 Once container configuration and other preparatory work are complete, the Docker container is launched with bi-directional
