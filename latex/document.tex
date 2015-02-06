@@ -68,7 +68,8 @@ Additionally, the name of a custom Docker image can be provided in the configura
 installed from the Docker Hub. The default Docker image is specially crafted for use in conjunction with the
 IPython Interactive Environment and will be described in more detail later. 
 The configuration is also responsible for providing a history dataset 
-association (HDA) for the template file in order to access the data. \\
+association (HDA) for the template file in order to access the data.
+
 The template file is written in Mako, a Python template engine which can be used in conjunction with HTML
 % RFY: Mako needs a reference
 and Javascript code to generate web pages. In the first part of the template file, a configuration is generated with a password, 
@@ -84,7 +85,8 @@ package managers, e.g.\ pip. The same holds for R packages. Moreover, tools that
 % RFY: Same as above. Pip and R need to be referenced
 The IPython notebook is then embedded inside the usual Galaxy interface and can be used to interactively program in a variety of programming languages.
 Having abstracted the chosen container into a site-specific configuration option, Galaxy instances with different use cases
-and needs can provide Docker images to their users with appropriate tool suites.\\
+and needs can provide Docker images to their users with appropriate tool suites.
+
 During Docker container startup, a cron job is launched, monitoring whether the IPython service
 is still being used by checking the network traffic. If the page with the IPython notebook is closed, the
 Docker process automatically terminates itself. Within the IPython Notebook, 
@@ -95,7 +97,8 @@ of the dataset in the history. The \textit{put} function automatically builds a 
 Galaxy instance and uploads a specified file from inside the Docker container to the user's
 history. The flexibility is obvious: any dataset can be
 loaded into the notebook, datasets can be combined or modified, and the results can be written back to the history.
-The entire traffic occures between the Galaxy host and the IPython Docker container without the need for the user to upload or download data to the client. \\
+The entire traffic occures between the Galaxy host and the IPython Docker container without the need for the user to upload or download data to the client. 
+
 Notebooks can be saved back to the Galaxy history at any time. Once a notebook is part of a history 
 it can be inspected as any other Galaxy dataset. 
 Additionaly, it can be reused to start a new IPython instance reloading the saved notebook. 
