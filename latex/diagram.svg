@@ -14,7 +14,7 @@
    height="326.47174"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.3.1 r9886"
+   inkscape:version="0.48.5 r10040"
    sodipodi:docname="diagram.svg">
   <defs
      id="defs4">
@@ -430,15 +430,15 @@
      inkscape:pageshadow="2"
      inkscape:zoom="2.7812515"
      inkscape:cx="179.51218"
-     inkscape:cy="167.60444"
+     inkscape:cy="210.75048"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:snap-global="true"
-     inkscape:window-width="1615"
-     inkscape:window-height="1026"
-     inkscape:window-x="1745"
-     inkscape:window-y="24"
+     inkscape:window-width="1366"
+     inkscape:window-height="702"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
      inkscape:window-maximized="1"
      inkscape:snap-bbox="true"
      fit-margin-top="5"
@@ -763,7 +763,7 @@
          sodipodi:role="line"
          id="tspan5090"
          x="101.04494"
-         y="382.36218">ipython.mako</tspan></text>
+         y="382.36218">IE Entry Point</tspan></text>
     <rect
        ry="0"
        y="392.36218"
@@ -828,13 +828,13 @@
            y="438.93411"
            x="264.0592"
            id="tspan5203"
-           sodipodi:role="line">History_ID</tspan><tspan
+           sodipodi:role="line">History ID</tspan><tspan
            id="tspan5205"
-           y="447.15714"
+           y="447.1571"
            x="264.0592"
-           sodipodi:role="line">API_Key</tspan><tspan
+           sodipodi:role="line">API Key</tspan><tspan
            id="tspan5207"
-           y="455.3801"
+           y="455.38007"
            x="264.0592"
            sodipodi:role="line">Password</tspan></text>
     </g>
@@ -914,7 +914,7 @@
          id="tspan5302"
          x="244.41113"
          y="317.11414"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Sans;-inkscape-font-specification:Sans">Ipython + scipy stack installed</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Sans;-inkscape-font-specification:Sans">IPython + SciPy stack + R </tspan></text>
     <rect
        style="fill:#c8b7b7;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0.25"
        id="rect5068-4-0-1"
@@ -1193,7 +1193,7 @@
            style="font-size:6px"
            y="442.13263"
            x="270.54706"
-           sodipodi:role="line">while Active Connection</tspan></text>
+           sodipodi:role="line">while active Connection</tspan></text>
     </g>
     <path
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0.25;marker-end:url(#Arrow1Mend)"
