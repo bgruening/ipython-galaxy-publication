@@ -14,7 +14,7 @@
    height="360.90646"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.3.1 r9886"
+   inkscape:version="0.48.5 r10040"
    sodipodi:docname="diagram.svg">
   <title
      id="title5754">Galaxy IPython Graphic</title>
@@ -439,10 +439,10 @@
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:snap-global="true"
-     inkscape:window-width="1615"
-     inkscape:window-height="1026"
-     inkscape:window-x="1745"
-     inkscape:window-y="24"
+     inkscape:window-width="1366"
+     inkscape:window-height="702"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
      inkscape:window-maximized="1"
      inkscape:snap-bbox="true"
      fit-margin-top="5"
@@ -554,7 +554,7 @@
          sodipodi:role="line"
          id="tspan5090"
          x="105.97406"
-         y="335.23715">ipython.mako</tspan></text>
+         y="335.23715">IE Entry Point</tspan></text>
     <rect
        ry="0"
        y="343.80939"
