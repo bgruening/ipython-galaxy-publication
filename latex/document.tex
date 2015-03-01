@@ -190,14 +190,12 @@ creating a persistent, downloadable, and sharable Galaxy object.
 \caption{Program flow when starting the IPython IE.
 Initialization information and a default IPython notebook are generated and stored in a temporary folder that will be shared
 with a Docker container. This container will be launched on a user-specific port and starts an IPython webserver
-with a default password obtained from the configuration file.
-
+with a default password obtained from the configuration file. 
 The IEEP opens a connection to the webservice and authentificate the user automatically with the previously generated password.
 Once the user is logged it, the notebook will be embedded into Galaxy.
 For self cleaning, the container also checks whether a connection to the host exists, enabling self termination 
-if no longer in use. The IPython Docker image contains additional scientific libraries like SciPy, 
-Pandas and R and can be easily replaced.
-}
+if no longer in use. The IPython Docker image contains additional scientific libraries like SciPy,
+Pandas and R and can be easily replaced.}
 \label{fig:diagram}
 \end{figure}
 
